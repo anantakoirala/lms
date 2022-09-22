@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Academic extends Model
+class Semester extends Model
 {
-    protected $fillable =['academic_year'];
+    protected $fillable =['name','semester_code','semester_duration','description'];
 }

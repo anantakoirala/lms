@@ -40,12 +40,16 @@
       {{csrf_field()}}
       <div class="card-body">
         <div class="form-group">
-          <label>Class</label>
-          <input type="text" name="name" class="form-control">
+          <label>Name</label>
+          <input type="text" name="name" class="form-control" value="{{old('name')}}">
         </div>
         <div class="form-group">
-          <label>Class Code</label>
-          <input type="text" name="class_code" class="form-control">
+          <label>Classroom Code</label>
+          <input type="text" name="classroom_code" class="form-control" value="{{old('clasroom_code')}}">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-control" name="description">{{old('description')}}</textarea>
         </div>
         <div class="form-group">
           

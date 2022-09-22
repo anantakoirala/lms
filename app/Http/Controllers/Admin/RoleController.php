@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Academic;
+use App\Models\Role;
 
-class AcademicController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,9 @@ class AcademicController extends Controller
      */
     public function index()
     {
-        $details = Academic::orderBy('created_at','desc')->get();
-        return view('admin.academic.list',compact('details'));
+        $details = Role::orderBy('created_at','desc')->get();
+
+        return view('admin.role.list',compact('details'));
     }
 
     /**
@@ -26,7 +27,7 @@ class AcademicController extends Controller
      */
     public function create()
     {
-        return view('admin.academic.create');
+        return view('admin.role.create');
     }
 
     /**
@@ -37,9 +38,9 @@ class AcademicController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,['academic_year'=>'required']);
-        Academic::create($request->all());
-        return redirect()->route('academic.index')->with('message','Academic year added succcessfully');
+        $this->validate($request,['name'=>'required|string|max:230']);
+        Role::create($request->all());
+        return redirect()->route("role.index")->with('message','Role created successfully');
     }
 
     /**
@@ -61,8 +62,8 @@ class AcademicController extends Controller
      */
     public function edit($id)
     {
-        $detail = Academic::findOrFail($id);
-        return view('admin.academic.edit',compact('detail'));
+        $detail = Role::findOrFail($id);
+        return view('admin.role.edit',compact('detail'));
     }
 
     /**
@@ -74,9 +75,9 @@ class AcademicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,['academic_year'=>'required']);
-        Academic::find($id)->update($request->all());
-        return redirect()->route('academic.index')->with('message','Academic year updated succcessfully');
+        $this->validate($request,['name'=>'required|string|max:230']);
+        Role::find($id)->update($request->all());
+        return redirect()->route("role.index")->with('message','Role updated successfully');
     }
 
     /**
@@ -87,7 +88,7 @@ class AcademicController extends Controller
      */
     public function destroy($id)
     {
-        Academic::find($id)->delete();
-        return redirect()->back()->with('message','Academic year deleted successfully');
+        Role::find($id)->delete();
+        return redirect()->back()->with('message','Role Deleted Successfully');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ClassAssigning;
 
 class ClassAssigningController extends Controller
 {
@@ -14,7 +15,8 @@ class ClassAssigningController extends Controller
      */
     public function index()
     {
-        //
+        $details = ClassAssigning::orderBy('created_at','desc')->get();
+        return view('admin.classassigning.list',compact('details'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ClassAssigningController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.classassigning.create');
     }
 
     /**

@@ -4,12 +4,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Course</h1>
+        <h1>Semester</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Course</li>
+          <li class="breadcrumb-item active">Semester</li>
         </ol>
       </div>
     </div>
@@ -32,24 +32,28 @@
     @endif
    <div class="card card-info">
     <div class="card-header">
-      <h3 class="card-title">Edit Course</h3>
+      <h3 class="card-title">Add Semester</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form class="form-horizontal" action="{{route('course.update',$detail->id)}}" method="post">
+    <form class="form-horizontal" action="{{route('semester.update',$detail->id)}}" method="post">
       {{csrf_field()}}
       <input type="hidden" name="_method" value="PUT">
       <div class="card-body">
         <div class="form-group">
-          <label>Name</label>
+          <label>Semester</label>
           <input type="text" name="name" class="form-control" value="{{$detail->name}}">
         </div>
         <div class="form-group">
-          <label>Course Code</label>
-          <input type="text" name="course_code" class="form-control" value="{{$detail->course_code}}">
+          <label>Semester Code</label>
+          <input type="text" name="semester_code" class="form-control" value="{{$detail->semester_code}}">
         </div>
         <div class="form-group">
-          <label>Description</label>
+          <label>Semester Duration</label>
+          <input type="text" name="semester_duration" class="form-control" value="{{$detail->semester_duration}}">
+        </div>
+        <div class="form-group">
+          <label>Semester Desctiption</label>
           <input type="text" name="description" class="form-control" value="{{$detail->description}}">
         </div>
         <div class="form-group">

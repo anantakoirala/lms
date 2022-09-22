@@ -4,12 +4,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Course</h1>
+        <h1>Class Assigning</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Course</li>
+          <li class="breadcrumb-item active">Class Assigning</li>
         </ol>
       </div>
     </div>
@@ -32,25 +32,20 @@
     @endif
    <div class="card card-info">
     <div class="card-header">
-      <h3 class="card-title">Edit Course</h3>
+      <h3 class="card-title">Add Batch</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form class="form-horizontal" action="{{route('course.update',$detail->id)}}" method="post">
+    <form class="form-horizontal" action="{{route('class-assigning.store')}}" method="post">
       {{csrf_field()}}
-      <input type="hidden" name="_method" value="PUT">
       <div class="card-body">
         <div class="form-group">
-          <label>Name</label>
-          <input type="text" name="name" class="form-control" value="{{$detail->name}}">
+          <label>Class</label>
+          <input type="text" name="name" class="form-control">
         </div>
         <div class="form-group">
-          <label>Course Code</label>
-          <input type="text" name="course_code" class="form-control" value="{{$detail->course_code}}">
-        </div>
-        <div class="form-group">
-          <label>Description</label>
-          <input type="text" name="description" class="form-control" value="{{$detail->description}}">
+          <label>Class Code</label>
+          <input type="text" name="class_code" class="form-control">
         </div>
         <div class="form-group">
           

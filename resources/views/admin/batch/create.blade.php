@@ -40,13 +40,10 @@
       {{csrf_field()}}
       <div class="card-body">
         <div class="form-group">
-          <label>Class</label>
+          <label>Name</label>
           <input type="text" name="name" class="form-control">
         </div>
-        <div class="form-group">
-          <label>Class Code</label>
-          <input type="text" name="class_code" class="form-control">
-        </div>
+       
         <div class="form-group">
           
           <input type="submit" name="submit" class="btn btn-success">

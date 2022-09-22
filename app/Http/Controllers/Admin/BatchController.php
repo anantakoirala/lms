@@ -37,7 +37,9 @@ class BatchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,['name'=>'required']);
+        Batch::create($request->all());
+        return redirect()->route('batch.index')->with('message','Batch Created Successfully');
     }
 
     /**
@@ -59,7 +61,8 @@ class BatchController extends Controller
      */
     public function edit($id)
     {
-        //
+        $detail = Batch::findOrFail($id);
+        return view('admin.batch.edit',compact('detail'));
     }
 
     /**
@@ -71,7 +74,9 @@ class BatchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['name'=>'required']);
+        Batch::find($id)->update($request->all());
+        return redirect()->route('batch.index')->with('message','Batch Updated Successfully');
     }
 
     /**
@@ -82,6 +87,7 @@ class BatchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Batch::find($id)->delete($id);
+        return redirect()->back()->with('message','Batch Deleted Successfully');
     }
 }

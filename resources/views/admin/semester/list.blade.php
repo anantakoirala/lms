@@ -22,12 +22,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Batch</h1>
+        <h1>Semester</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Batch</li>
+          <li class="breadcrumb-item active">Semester</li>
         </ol>
       </div>
     </div>
@@ -39,7 +39,7 @@
     <div class="card">
       <div class="card-header">
         
-        <a href="{{route('batch.create')}}" class="btn btn-success m-r">Add Batch</a>
+        <a href="{{route('semester.create')}}" class="btn btn-success m-r">Add Semester</a>
       </div>
       <!-- /.card-header -->
       <div class="card-body">
@@ -48,6 +48,8 @@
           <tr>
             <th>Sn</th>
             <th>Name</th>
+            <th>Semester Code</th>
+            <th>Semester Duration</th>
             <th>Action</th>
             
           </tr>
@@ -58,10 +60,11 @@
           <tr>
             <td>{{$i}}</td>
             <td>{{$detail->name}}</td>
-            
+            <td>{{$detail->semester_code}}</td>
+            <td>{{$detail->semester_duration}}</td>
             <td class="buttons">
-              <a class="btn btn-info edit " href="{{route('batch.edit',$detail->id)}}" title="Edit">Edit</a>
-              <form method= "post" action="{{route('batch.destroy',$detail->id)}}">
+              <a class="btn btn-info edit " href="{{route('semester.edit',$detail->id)}}" title="Edit">Edit</a>
+              <form method= "post" action="{{route('semester.destroy',$detail->id)}}">
               {{csrf_field()}}
               <input type="hidden" name="_method" value="DELETE">
               <button type="submit" class="btn-delete" style="display:inline">Delete</button>

@@ -35,4 +35,8 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
     Route::resource('attendance','AttendanceController');
     Route::resource('academic','AcademicController');
     Route::resource('day','DayController');
+    Route::resource('class-assigning','ClassAssigningController');
+    Route::resource('role','RoleController');
+    Route::resource('semester','SemesterController');
+    Route::resource('class-scheduling','ClassSchedulingController');
 });

@@ -16,6 +16,7 @@ class ClassroomController extends Controller
     public function index()
     {
         $details = Classroom::orderBy('created_at','desc')->get();
+        
         return view('admin.classroom.list',compact('details'));
     }
 
@@ -37,7 +38,12 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|string',
+            'classroom_code'=>'required|integer|unique:classrooms'
+        ]);
+        Classroom::create($request->all());
+        return redirect()->route('classroom.index')->with('message','Classroom added successfully');
     }
 
     /**
@@ -59,7 +65,8 @@ class ClassroomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $detail = Classroom::findOrFail($id);
+        return view('admin.classroom.edit',compact('detail'));
     }
 
     /**
@@ -71,7 +78,12 @@ class ClassroomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|string',
+            'classroom_code'=>'required|integer|unique:classrooms,classroom_code,'.$id
+        ]);
+        Classroom::find($id)->update($request->all());
+        return redirect()->route('classroom.index')->with('message','Classroom updated successfully');
     }
 
     /**
@@ -82,6 +94,7 @@ class ClassroomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Classroom::find($id)->delete();
+        return redirect()->back()->with('message','Classroom deleted Successfully');
     }
 }

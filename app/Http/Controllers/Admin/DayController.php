@@ -37,7 +37,9 @@ class DayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,['name'=>'required']);
+        Day::create($request->all());
+        return redirect()->route('day.index')->with('message','Day Created Successfully');
     }
 
     /**
@@ -59,7 +61,8 @@ class DayController extends Controller
      */
     public function edit($id)
     {
-        //
+        $detail = Day::findOrFail($id);
+        return view('admin.day.edit',compact('detail'));
     }
 
     /**
@@ -71,7 +74,9 @@ class DayController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['name'=>'required']);
+        Day::find($id)->update($request->all());
+        return redirect()->route('day.index')->with('message','Day Updated Successfully');
     }
 
     /**
@@ -82,6 +87,7 @@ class DayController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Day::find($id)->delete($id);
+        return redirect()->back()->with('message','Day deleted Successfully');
     }
 }

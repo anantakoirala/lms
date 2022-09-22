@@ -37,7 +37,12 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|string',
+            'course_code'=>'required|unique:courses'
+        ]);
+        Course::create($request->all());
+        return redirect()->route('course.index')->with('message','Course added successfully');
     }
 
     /**
@@ -59,7 +64,8 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $detail = Course::findOrFail($id);
+        return view('admin.course.edit',compact('detail'));
     }
 
     /**
@@ -71,7 +77,12 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|string',
+            'course_code'=>'required|unique:courses,course_code,'.$id
+        ]);
+        Course::find($id)->update($request->all());
+        return redirect()->route('course.index')->with('message','Course updated successfully');
     }
 
     /**
@@ -82,6 +93,7 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Course::find($id)->delete();
+        return redirect()->back()->with('message','Course Deleted Successfully');
     }
 }

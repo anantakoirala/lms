@@ -22,12 +22,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Batch</h1>
+        <h1>Role</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Batch</li>
+          <li class="breadcrumb-item active">Role</li>
         </ol>
       </div>
     </div>
@@ -39,7 +39,7 @@
     <div class="card">
       <div class="card-header">
         
-        <a href="{{route('batch.create')}}" class="btn btn-success m-r">Add Batch</a>
+        <a href="{{route('role.create')}}" class="btn btn-success m-r">Add Role</a>
       </div>
       <!-- /.card-header -->
       <div class="card-body">
@@ -60,8 +60,8 @@
             <td>{{$detail->name}}</td>
             
             <td class="buttons">
-              <a class="btn btn-info edit " href="{{route('batch.edit',$detail->id)}}" title="Edit">Edit</a>
-              <form method= "post" action="{{route('batch.destroy',$detail->id)}}">
+              <a class="btn btn-info edit " href="{{route('role.edit',$detail->id)}}" title="Edit">Edit</a>
+              <form method= "post" action="{{route('role.destroy',$detail->id)}}">
               {{csrf_field()}}
               <input type="hidden" name="_method" value="DELETE">
               <button type="submit" class="btn-delete" style="display:inline">Delete</button>

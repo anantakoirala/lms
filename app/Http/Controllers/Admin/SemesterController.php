@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Academic;
+use App\Models\Semester;
 
-class AcademicController extends Controller
+class SemesterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class AcademicController extends Controller
      */
     public function index()
     {
-        $details = Academic::orderBy('created_at','desc')->get();
-        return view('admin.academic.list',compact('details'));
+        $details = Semester::orderBy('created_at','desc')->get();
+        return view('admin.semester.list',compact('details'));
     }
 
     /**
@@ -26,7 +26,7 @@ class AcademicController extends Controller
      */
     public function create()
     {
-        return view('admin.academic.create');
+        return view('admin.semester.create');
     }
 
     /**
@@ -37,9 +37,9 @@ class AcademicController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,['academic_year'=>'required']);
-        Academic::create($request->all());
-        return redirect()->route('academic.index')->with('message','Academic year added succcessfully');
+        $this->validate($request,['name'=>'required|string|max:230','semester_code'=>'required|unique:semesters','semester_duration'=>'required']);
+        Semester::create($request->all());
+        return redirect()->route('semester.index')->with('message','Semester created succesfully');
     }
 
     /**
@@ -61,8 +61,8 @@ class AcademicController extends Controller
      */
     public function edit($id)
     {
-        $detail = Academic::findOrFail($id);
-        return view('admin.academic.edit',compact('detail'));
+        $detail = Semester::findOrFail($id);
+        return view('admin.semester.edit',compact('detail'));
     }
 
     /**
@@ -74,9 +74,13 @@ class AcademicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,['academic_year'=>'required']);
-        Academic::find($id)->update($request->all());
-        return redirect()->route('academic.index')->with('message','Academic year updated succcessfully');
+        $this->validate($request,[
+            'name'=>'required|string|max:230',
+            'semester_code'=>'required|unique:semesters,semester_code,'.$id,
+            'semester_duration'=>'required'
+        ]);
+        Semester::find($id)->update($request->all());
+        return redirect()->route('semester.index')->with('message','Semester updated succesfully');
     }
 
     /**
@@ -87,7 +91,7 @@ class AcademicController extends Controller
      */
     public function destroy($id)
     {
-        Academic::find($id)->delete();
-        return redirect()->back()->with('message','Academic year deleted successfully');
+        Semester::find($id)->delete();
+        return redirect()->back()->with('message','Semester deleted successfully');
     }
 }

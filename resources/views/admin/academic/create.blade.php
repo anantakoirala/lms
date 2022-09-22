@@ -9,7 +9,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Attendance</li>
+          <li class="breadcrumb-item active">Acaemic</li>
         </ol>
       </div>
     </div>
@@ -32,21 +32,18 @@
     @endif
    <div class="card card-info">
     <div class="card-header">
-      <h3 class="card-title">Add Attendance</h3>
+      <h3 class="card-title">Add Academic year</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form class="form-horizontal" action="{{route('attendance.store')}}" method="post">
+    <form class="form-horizontal" action="{{route('academic.store')}}" method="post">
       {{csrf_field()}}
       <div class="card-body">
         <div class="form-group">
-          <label>Class</label>
-          <input type="text" name="name" class="form-control">
+          <label>Academic Year</label>
+          <input type="text" name="academic_year" class="form-control" value="{{old('academic_year')}}">
         </div>
-        <div class="form-group">
-          <label>Class Code</label>
-          <input type="text" name="class_code" class="form-control">
-        </div>
+        
         <div class="form-group">
           
           <input type="submit" name="submit" class="btn btn-success">
